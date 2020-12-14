@@ -9,6 +9,9 @@ import { OneComponent } from './one/one.component';
 
 import { MockService } from './mock.service';
 import { PrimeService } from './prime.service';
+import { Mock2Service } from './mock2.service';
+import { serviceFactory} from './servicefactory';
+import { whichService } from './serviceCalculation';
 
 export const appRouter: Routes = [
   {path: '', component: OneComponent},
@@ -28,7 +31,8 @@ export const appRouter: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(appRouter)
   ],
-  providers: [{provide: PrimeService, useClass: MockService}],
+  providers: [{provide: PrimeService, useFactory: serviceFactory, deps: ['MYSERVICE']}, {provide: 'MYSERVICE',
+    useValue: whichService.info}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
