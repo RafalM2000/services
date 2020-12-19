@@ -31,8 +31,8 @@ export const appRouter: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(appRouter)
   ],
-  providers: [{provide: PrimeService, useFactory: serviceFactory, deps: ['MYSERVICE']}, {provide: 'MYSERVICE',
-    useValue: whichService.info}],
+  providers: [{provide: PrimeService, useClass: PrimeService}],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
